@@ -6,4 +6,153 @@
     android:layout_height="match_parent"
     tools:context=".view.EnT2">
 
+    <ImageView
+        android:id="@+id/imageInput3"
+        android:layout_width="172dp"
+        android:layout_height="164dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <HorizontalScrollView
+        android:id="@+id/command_layout"
+        android:layout_width="381dp"
+        android:layout_height="356dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageInput3"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="381dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/eq_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="148dp"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/w_seekbar"
+                        android:layout_width="299dp"
+                        android:layout_height="41dp"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="100" />
+
+                    <EditText
+                        android:id="@+id/weight_inp"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="100"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/apply_w_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="apply" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/sm_result"
+                    android:layout_width="381dp"
+                    android:layout_height="148dp"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/conv_size"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="3"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/apply_sm_bt"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Apply" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/spec_result"
+                    android:layout_width="381dp"
+                    android:layout_height="148dp"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <SeekBar
+                    android:id="@+id/a_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:max="500"
+                    android:progress="200" />
+
+                <SeekBar
+                    android:id="@+id/b_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:max="500"
+                    android:progress="300" />
+
+                <SeekBar
+                    android:id="@+id/c_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:max="500"
+                    android:progress="100" />
+
+                <Button
+                    android:id="@+id/apply_spec_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apply" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </android.support.constraint.ConstraintLayout>

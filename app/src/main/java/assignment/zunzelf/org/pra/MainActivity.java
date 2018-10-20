@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Histogram.class));
             }
         });
-        Button ass3Btn = (Button) findViewById(R.id.button3);
+        Button ass3Btn = (Button) findViewById(R.id.button4);
         ass3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, EnT1.class));
             }
         });
-        Button ass4Btn = (Button) findViewById(R.id.button4);
+        Button ass4Btn = (Button) findViewById(R.id.button3);
         ass4Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
