@@ -11,8 +11,7 @@ public class ThinningAlgorithm {
 
     static final int white = 0xFFFFFFFF;
     static final int black = 0xFF000000;
-    final static int[][][] nbrGroups = {{{0, 2, 4}, {2, 4, 6}}, {{0, 2, 6},
-            {0, 4, 6}}};
+    final static int[][][] nbrGroups = {{{0, 2, 4}, {2, 4, 6}}, {{0, 2, 6}, {0, 4, 6}}};
     int obj = 0;
     ImageChainCode icc = new ImageChainCode();
     public Bitmap zhangSuen(Bitmap image) {
@@ -86,7 +85,6 @@ public class ThinningAlgorithm {
             }
         return count > 1;
     }
-
 
     public int[] translate(int x, int y, int pos){
         if(pos > 7) pos = 0;
