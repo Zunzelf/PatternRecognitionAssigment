@@ -92,7 +92,7 @@ public class SkeletonRecognition extends AppCompatActivity {
 
     private void processData() throws IOException {
         String res = new NewImageUtil().inferences(models, bitmap);
-        ((TextView) findViewById(R.id.textResult)).setText(res);
+        ((TextView) findViewById(R.id.textResult)).setText(translate(res));
     }
 
     // image view button
@@ -126,6 +126,13 @@ public class SkeletonRecognition extends AppCompatActivity {
             }
 
         }
+    }
+
+    private String translate(String inp){
+        String res = (inp.contains("_c")) ? inp.replace("_c", "").toUpperCase() :
+                (inp.contains("symbol")) ? "<symbol>" :
+                        inp;
+        return res;
     }
 
 }
