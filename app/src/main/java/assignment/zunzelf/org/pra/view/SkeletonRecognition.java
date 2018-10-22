@@ -43,14 +43,7 @@ public class SkeletonRecognition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skeleton_recognition);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         String dir = FileUtil.DIRECTORY;
-//        // create model
-//        try {
-//            new FileUtil().createDataset("dataset_mdl");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         // load models
         File mdl_file = new File(dir, "dataset_mdl");
