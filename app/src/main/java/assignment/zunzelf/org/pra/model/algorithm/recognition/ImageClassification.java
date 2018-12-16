@@ -1,4 +1,4 @@
-package assignment.zunzelf.org.pra.model;
+package assignment.zunzelf.org.pra.model.algorithm.recognition;
 
 import android.util.Log;
 

@@ -1,12 +1,9 @@
 package assignment.zunzelf.org.pra.view;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,14 +14,11 @@ import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.TextView;
-
-import com.jjoe64.graphview.GraphView;
 
 import java.io.IOException;
 
 import assignment.zunzelf.org.pra.R;
-import assignment.zunzelf.org.pra.model.PreProModule;
+import assignment.zunzelf.org.pra.model.utils.image.PreProModule;
 
 public class EnT2 extends AppCompatActivity {
 

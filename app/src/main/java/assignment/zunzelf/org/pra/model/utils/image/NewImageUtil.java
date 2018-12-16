@@ -1,8 +1,7 @@
-package assignment.zunzelf.org.pra.model.utils;
+package assignment.zunzelf.org.pra.model.utils.image;
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import assignment.zunzelf.org.pra.model.datamodel.SkeletonFeature;

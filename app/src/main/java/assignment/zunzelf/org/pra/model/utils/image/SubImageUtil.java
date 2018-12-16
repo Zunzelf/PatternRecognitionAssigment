@@ -1,4 +1,4 @@
-package assignment.zunzelf.org.pra.model.utils;
+package assignment.zunzelf.org.pra.model.utils.image;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;

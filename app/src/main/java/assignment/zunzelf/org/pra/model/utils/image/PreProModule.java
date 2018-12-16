@@ -1,8 +1,7 @@
-package assignment.zunzelf.org.pra.model;
+package assignment.zunzelf.org.pra.model.utils.image;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.util.Log;
 
 public class PreProModule {
 

@@ -13,7 +13,10 @@ import assignment.zunzelf.org.pra.view.ArialDigit;
 import assignment.zunzelf.org.pra.view.DataSetManagement;
 import assignment.zunzelf.org.pra.view.EnT1;
 import assignment.zunzelf.org.pra.view.EnT2;
+import assignment.zunzelf.org.pra.view.Fourier;
+import assignment.zunzelf.org.pra.view.FaceRegion;
 import assignment.zunzelf.org.pra.view.Histogram;
+import assignment.zunzelf.org.pra.view.OCR;
 import assignment.zunzelf.org.pra.view.SevenSegment;
 import assignment.zunzelf.org.pra.view.SkeletonRecognition;
 import assignment.zunzelf.org.pra.view.Thinning;
@@ -81,6 +84,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Thinning.class));
+            }
+        });
+        Button ass8Btn = (Button) findViewById(R.id.button8);
+        ass8Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OCR.class));
+            }
+        });
+        Button ass9Btn = (Button) findViewById(R.id.button9);
+        ass9Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FaceRegion.class));
+            }
+        });
+        Button ass10Btn = (Button) findViewById(R.id.button10);
+        ass10Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Fourier.class));
             }
         });
     }

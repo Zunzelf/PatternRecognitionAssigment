@@ -17,7 +17,7 @@ import java.util.List;
 
 import assignment.zunzelf.org.pra.R;
 import assignment.zunzelf.org.pra.model.ImageChainCode;
-import assignment.zunzelf.org.pra.model.ImageClassification;
+import assignment.zunzelf.org.pra.model.algorithm.recognition.ImageClassification;
 
 public class SevenSegment extends AppCompatActivity {
 

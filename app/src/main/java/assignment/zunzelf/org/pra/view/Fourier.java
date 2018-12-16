@@ -11,53 +11,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import assignment.zunzelf.org.pra.R;
-import assignment.zunzelf.org.pra.model.utils.FileUtil;
-import assignment.zunzelf.org.pra.model.utils.image.NewImageUtil;
+import assignment.zunzelf.org.pra.model.utils.image.Transform;
 
-public class SkeletonRecognition extends AppCompatActivity {
-
+public class Fourier extends AppCompatActivity {
     private static final int PICK_IMAGE = 100;
     ImageView inp;
+    Button get;
     Uri imageURI;
-    Bitmap bitmap;
-    String[][] models;
+    List<Bitmap> res;
+    Bitmap bitmap, bitmap2;
+    int scale = 50;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skeleton_recognition);
+        setContentView(R.layout.activity_fourier);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String dir = FileUtil.DIRECTORY;
-
-        // load models
-        File mdl_file = new File(dir, "dataset_mdl");
-        try {
-            models = new FileUtil().loadDataset(mdl_file.getPath());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         imageViewButton();
-        Button proceed = (Button) findViewById(R.id.processData);
-        proceed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Dataset", "Processing...");
-                try {
-                    processData();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        getButton();
     }
-
+    // back to home button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -68,19 +47,13 @@ public class SkeletonRecognition extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
 
-    private void processData() throws IOException {
-        String res = new NewImageUtil().inferences(models, bitmap);
-        ((TextView) findViewById(R.id.textResult)).setText(translate(res));
-    }
-
     // image view button
     private void imageViewButton(){
-        inp = (ImageView) findViewById(R.id.inputRecog);
+        inp = (ImageView) findViewById(R.id.ftView);
         inp.setClickable(true);
         inp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +63,17 @@ public class SkeletonRecognition extends AppCompatActivity {
         });
     }
 
+    private void getButton(){
+        get = (Button) findViewById(R.id.trf_btn);
+        get.setClickable(true);
+        get.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap resb = new Transform().DFT(bitmap, true);
+                ((ImageView) findViewById(R.id.resTrans)).setImageBitmap(resb);
+            }
+        });
+    }
     private void openGallery(){
         Intent gallery =  new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
@@ -97,6 +81,9 @@ public class SkeletonRecognition extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
+        ((ImageView) findViewById(R.id.ftView)).setVisibility(View.VISIBLE);
+        ((Button) findViewById(R.id.trf_btn)).setVisibility(View.VISIBLE);
+        ((ImageView) findViewById(R.id.resTrans)).setVisibility(View.VISIBLE);
         if(resultCode== RESULT_OK && requestCode == PICK_IMAGE){
             // Load Image File
             imageURI = data.getData();
@@ -110,12 +97,4 @@ public class SkeletonRecognition extends AppCompatActivity {
 
         }
     }
-
-    private String translate(String inp){
-        String res = (inp.contains("_c")) ? inp.replace("_c", "").toUpperCase() :
-                (inp.contains("symbol")) ? "<symbol>" :
-                        inp;
-        return res;
-    }
-
 }

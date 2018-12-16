@@ -1,4 +1,4 @@
-package assignment.zunzelf.org.pra.model;
+package assignment.zunzelf.org.pra.model.utils.image;
 
 import android.graphics.Bitmap;
 

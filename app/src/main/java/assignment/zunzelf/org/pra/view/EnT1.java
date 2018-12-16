@@ -10,13 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.List;
 
 import assignment.zunzelf.org.pra.R;
-import assignment.zunzelf.org.pra.model.PreProModule;
+import assignment.zunzelf.org.pra.model.utils.image.PreProModule;
 
 public class EnT1 extends AppCompatActivity {
     private static final int PICK_IMAGE = 100;
