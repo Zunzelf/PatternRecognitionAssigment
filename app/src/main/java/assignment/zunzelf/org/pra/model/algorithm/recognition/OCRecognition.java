@@ -48,14 +48,14 @@ public class OCRecognition {
             res.add(arr2Img(obj));
             String holeFeature = hole(obj);
             String regionFeature = region(obj);
-            String feature = regionFeature + holeFeature;
+            String secttionFeature = intersect(obj);
+            String feature = regionFeature + holeFeature + secttionFeature;
             recRes += inference(feature, model) + " " ;
             Log.d("Feature", "Object-"+i+" : "+feature);
             i++;
         }
         return new Pair<List<Bitmap>, String>(res, recRes);
     }
-
     public String hole(int[][] img){
         boolean isHole = false;
         String res="";
@@ -95,15 +95,14 @@ public class OCRecognition {
             res = "1001";
         return res;
     }
-
     public String region(int[][] img){
         int[] res = new int[]{0,0,0,0,0,0,0,0,0};
         int w = img.length;
         int h = img[0].length;
         int xlb =(int) Math.round(w * 0.45);
         int xub =(int) Math.round(xlb + w * 0.1);
-        int ylb =(int) Math.round(w * 0.45);
-        int yub =(int) Math.round(ylb + w * 0.1);
+        int ylb =(int) Math.round(w * 0.4);
+        int yub =(int) Math.round(ylb + w * 0.2);
         for (int y = 0; y < h; y++){
             for (int x = 0; x < w; x++){
                 if(img[x][y] == Color.BLACK){
@@ -194,7 +193,73 @@ public class OCRecognition {
         }
         return mkString(res, "");
     }
-
+    public String intersect(int[][] img){
+        int[] res = new int[]{0,0};
+        int w = img.length;
+        int h = img[0].length;
+        for (int y = 0; y < h; y++){
+            for (int x = 0; x < w; x++){
+                if(img[x][y] == Color.BLACK){
+                    int i = 0;
+                    String comb = "";
+                    Point[] p = new Segmentation().getNeighbours(x, y);
+                    Point pt = p[0];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 0;
+                    }
+                    pt = p[1];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 1;
+                    }
+                    pt = p[2];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 2;
+                    }
+                    pt = p[3];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 3;
+                    }
+                    pt = p[4];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 4;
+                    }
+                    pt = p[5];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 5;
+                    }
+                    pt = p[6];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 6;
+                    }
+                    pt = p[7];
+                    if(img[pt.x][pt.y] != Color.WHITE){
+                        i += 1;
+                        comb += 7;
+                    }
+                    if (i == 3){
+                        if(comb.equals("024") || comb.equals("135") || comb.equals("246") || comb.equals("357")
+                                || comb.equals("046") || comb.equals("157") || comb.equals("026") || comb.equals("137")
+                                || comb.equals("025") || comb.equals("136") || comb.equals("247") || comb.equals("035")
+                                || comb.equals("146") || comb.equals("257") || comb.equals("036") || comb.equals("147"))
+                            res[0] += 1;
+                    }
+                    if (i == 4){
+                        if(comb.equals("0246") || comb.equals("1357") || comb.equals("0257")
+                                 || comb.equals("0136") || comb.equals("1467")|| comb.equals("0356"))
+                            res[1] = 1;
+                    }
+                }
+            }
+        }
+        return mkString(res, "");
+    }
     public Bitmap arr2Img(int[][] arr){
         Bitmap res = Bitmap.createBitmap(arr.length, arr[0].length, Bitmap.Config.ARGB_8888);
         for (int j = 0; j< arr[0].length; j++)
@@ -202,7 +267,6 @@ public class OCRecognition {
                 res.setPixel(i, j, arr[i][j]);
         return res;
     }
-
     public Bitmap toBinary(Bitmap img){
         int w = img.getWidth();
         int h = img.getHeight();
@@ -221,7 +285,6 @@ public class OCRecognition {
         bm.setPixels(pixels, 0, w, 0, 0, w, h);
         return bm;
     }
-
     public String mkString(int[] arr, String separator){
         String res = "";
         for(int i = 0; i < arr.length;i++)
@@ -231,7 +294,6 @@ public class OCRecognition {
                 res += separator + arr[i] + separator;
         return res;
     }
-
     public String inference(String feature, String[][] model){
         String res = "<unk>";
         for (int i = 0; i < model.length; i++){
@@ -240,5 +302,4 @@ public class OCRecognition {
         }
         return res;
     }
-
 }

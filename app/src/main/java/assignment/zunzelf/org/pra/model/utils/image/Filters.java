@@ -9,7 +9,6 @@ import java.util.Queue;
 
 public class Filters {
 
-
     public Bitmap skinFilter(Bitmap bm){
         return skinFilter(bm, false);
     }
@@ -271,6 +270,54 @@ public class Filters {
                     pixels[idx] = Color.WHITE;
             }
         res.setPixels(pixels, 0, w, 0, 0, w, h);
+        return res;
+    }
+    public Bitmap drawRect(Bitmap bm, int[] points){
+        Bitmap res = bm.copy(bm.getConfig(), true);
+        for(int y = points[3]; y <= (points[1] + 1); y++){
+            for(int x = points[2]; x <= points[0] + 1; x++){
+                if((x >= points[2]) && (x <= points[2] + 3))
+                    res.setPixel(x, y, Color.GREEN);
+                else if ((x <= points[0]) && (x >= points[0] - 3))
+                    res.setPixel(x, y, Color.GREEN);
+                else if ((y >= points[3]) && (y <= points[3] + 3))
+                    res.setPixel(x, y, Color.GREEN);
+                else if(y >= points[1] - 3 && y <= points[1]){
+                    res.setPixel(x, y, Color.GREEN);}
+            }
+        }
+        return res;
+    }
+    public Bitmap drawRect(Bitmap bm, int[] points, int color){
+        Bitmap res = bm.copy(bm.getConfig(), true);
+        for(int y = points[3]; y <= (points[1] + 1); y++){
+            for(int x = points[2]; x <= points[0] + 1; x++){
+                if((x >= points[2]) && (x <= points[2] + 3))
+                    res.setPixel(x, y, color);
+                else if ((x <= points[0]) && (x >= points[0] - 3))
+                    res.setPixel(x, y, color);
+                else if ((y >= points[3]) && (y <= points[3] + 3))
+                    res.setPixel(x, y, color);
+                else if(y >= points[1] - 3 && y <= points[1]){
+                    res.setPixel(x, y, color);}
+            }
+        }
+        return res;
+    }
+    public Bitmap drawRect(Bitmap bm, int[] points, int color, int size){
+        Bitmap res = bm.copy(bm.getConfig(), true);
+        for(int y = points[3]; y <= (points[1] + 1); y++){
+            for(int x = points[2]; x <= points[0] + 1; x++){
+                if((x >= points[2]) && (x <= points[2] + size))
+                    res.setPixel(x, y, color);
+                else if ((x <= points[0]) && (x >= points[0] - size))
+                    res.setPixel(x, y, color);
+                else if ((y >= points[3]) && (y <= points[3] + size))
+                    res.setPixel(x, y, color);
+                else if(y >= points[1] - size && y <= points[1]){
+                    res.setPixel(x, y, color);}
+            }
+        }
         return res;
     }
 }

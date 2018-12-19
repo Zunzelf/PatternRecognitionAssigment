@@ -2,6 +2,7 @@ package assignment.zunzelf.org.pra.view;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ import java.util.List;
 
 import assignment.zunzelf.org.pra.R;
 import assignment.zunzelf.org.pra.model.algorithm.recognition.Face;
+import assignment.zunzelf.org.pra.model.utils.image.Filters;
 
 public class FaceRegion extends AppCompatActivity {
 
@@ -109,9 +112,9 @@ public class FaceRegion extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageURI);
                 bitmap = Bitmap.createScaledBitmap(bitmap, 200, 200, false);
                 inp.setImageBitmap(bitmap);
-                Pair<List<Bitmap>, List<List<Point>>> contents = new Face().scanImg(bitmap);
-                res = contents.first;
-                pts = contents.second;
+                Pair<Bitmap, Pair<List<Bitmap>, List<List<Point>>>> contents = new Face().scanImg2(bitmap);
+                res = contents.second.first;
+                pts = contents.second.second;
                 ((TextView) findViewById(R.id.textView4)).setText(" detected : " + res.size() + " face(s)");
                 if(res.size() > 0){
                     String resp = "";
@@ -123,7 +126,7 @@ public class FaceRegion extends AppCompatActivity {
                 }
                 else
                     ((ImageView) findViewById(R.id.resultView)).setImageBitmap(Bitmap.createBitmap(100,100, Bitmap.Config.ARGB_8888));
-                ((ImageView) findViewById(R.id.frView)).setImageBitmap(bitmap);
+                ((ImageView) findViewById(R.id.frView)).setImageBitmap(contents.first);
             } catch (IOException e) {
                 e.printStackTrace();
             }
